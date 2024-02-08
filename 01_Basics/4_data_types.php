@@ -33,4 +33,8 @@ $randomNumber = 566012;
 echo $randomNumber . "\t" . gettype($randomNumber) . "\t";
 
 $numberString = strval($randomNumber);
-echo $numberString . "\t" . gettype($numberString) . "\t";
+echo $numberString . "\t" . gettype($numberString) . "\n";
+
+// other way to type cast
+$number2 = (int) "2222";
+var_dump($number2);
