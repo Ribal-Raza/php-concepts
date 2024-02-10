@@ -415,6 +415,24 @@ Operators are essential tools for arithmatic operations and comparisons. PHP pro
 - **Modulo (`%`):** Returns the remainder of division (e.g., `$remainder = 11 % 3`).
 - **Exponentiation (`**`):**  Raises the left operand to the power of the right operand (e.g.,  `$power = 2 \*\* 3`).
 
+#### Arithmetic Operators on Different Data Types (PHP 7.4 and 8)
+
+- **Integer + Integer:** Addition.
+- **Integer + Float:** Addition (float conversion on integer).
+- **String + String:** Concatenation.
+- **String + Integer/Float:** String conversion on integer/float, then concatenation.
+- **Integer/Float + Boolean:** 1 for true, 0 for false (type juggling).
+- **String + Boolean:** String conversion on boolean, then concatenation.
+- **Array + Array:** Merging arrays if keys are numeric, concatenation otherwise (PHP 7.4) or union of keys (PHP 8).
+- **Object + Object:** Addition might be defined in object's `__toString()` method if applicable.
+
+**General Rules:**
+
+- Numeric operations prioritize numeric conversions.
+- String operations involve concatenation when appropriate.
+- Object behavior depends on defined methods.
+- Use type coercion carefully to avoid unintended results.
+
 #### Assignment Operators
 
 - **Simple assignment (`=`):** Assigns a value to a variable (e.g., `$age = 30`).
@@ -448,6 +466,37 @@ Operators are essential tools for arithmatic operations and comparisons. PHP pro
 - **And (`&&`):** Returns true only if both operands are true (e.g., `$x > 0 && $y < 10`).
 - **Or (`||`):** Returns true if at least one operand is true (e.g., `$age >= 18 || $has_permission`).
 - **Not (`!`):** Negates the operand (e.g., `!$isValid`).
+
+#### `and`, `or` vs. `&&`, `||`
+
+- **`and`, `or`:**
+  - **Deprecated:** Avoid using `and`, `or` these in new code; they may be removed in future PHP versions.
+  - **Lower precedence:** Evaluate after most other operators, leading to unexpected results (e.g., `$x = 1 and 2 or 3;` results in `$x = 1`).
+  - **Type juggling/coercion:** Implicitly convert operands to booleans before evaluation.
+- **`&&`, `||`:**
+
+  - **Recommended:** Modern equivalents of `and`, `or`, with defined behavior and higher precedence.
+  - **Short-circuit evaluation** is a key characteristic of the `&&` (AND) and `||` (OR) operators in PHP. This means when evaluating these operators, PHP stops processing operands as soon as it can determine the overall result.
+    - **`&&`:** Returns `true` only if both operands are truthy.
+    - **`||`:** Returns `true` if at least one operand is truthy.
+
+**Code Example:**
+
+```php
+$age = 20;
+$has_permission = true;
+
+// Short-circuit evaluation with &&
+if ($age >= 18 && $has_permission) {
+    echo "Access granted";
+}
+
+// No short-circuit with and
+if ($age >= 18 and $has_permission) {
+    echo "Access granted";
+} // Unconditional execution, even if $age is not >= 18
+
+```
 
 #### Bitwise Operators
 
