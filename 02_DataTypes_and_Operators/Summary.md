@@ -40,6 +40,7 @@
   - [Operators](#operators)
     - [Operator Types](#operator-types)
     - [Other Types of Operators](#other-types-of-operators)
+  - [Operator Precedence](#operator-precedence)
 
 ## Expressions
 
@@ -527,3 +528,52 @@ if ($age >= 18 and $has_permission) {
 - **Null coalescing assignment (`??=`)** Assigns the right operand to the left operand only if the left operand is `null` (e.g., `$value ??= "default"`).
 - **Null safe method call (`?->`):** Allows calling methods on potentially null objects without errors (e.g., `$object?->method()`).
 - **Null safe property access (`?->`):** Accesses properties on potentially null objects without errors (e.g., `$object?->property`).
+
+### Operator Precedence
+
+Understanding operator precedence is crucial for writing predictable and efficient PHP code. It dictates the order in which operations are performed within an expression, ensuring the correct interpretation of your code. Let's delve into the details:
+
+**General Rule and Formula:**
+
+- **Precedence:** Operators with higher precedence are evaluated first.
+- **Associativity:** Operators with the same precedence are evaluated from left to right (left-associative) or right to left (right-associative).
+
+**Precedence Levels (Decreasing Order):**
+
+2.  **Unary Operators:** `++`, `--`, `!`, `~`, `-` (negation)
+3.  **Exponentiation:** `**`
+4.  **Multiplication and Division:** `*`, `/`, `%`
+5.  **Addition and Subtraction:** `+`, `-`
+6.  **Bitwise Shift Operators:** `<<`, `>>`
+7.  **Relational Operators:** `<`, `>`, `<=`, `>=`
+8.  **Equality Operators:** `==`, `!=`, `===`, `!==` (loose vs. strict)
+9.  **Logical AND:** `&&`
+10. **Logical OR:** `||`
+11. **Null Coalescing:** `??` (PHP 7.4 and above)
+12. **Nullish Coalescing:** `??=` (PHP 8.0 and above)
+13. **Conditional (Ternary) Operator:** `?:`
+14. **Assignment Operators:** `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `**=`
+15. **Comma Operator:** `,` (left to right evaluation)
+16. **Execution Operator:** ```` (deprecated)
+
+**PAMDAS:**
+
+- **P**arentheses: Always evaluated first, regardless of precedence.
+- **E**xponentiation: `**`
+- **M**ultiplication and Division: `*`, `/`, `%`
+- **A**ddition and Subtraction: `+`, `-`
+- **D**irectional Operators: `<<`, `>>`
+- **A**ssignment Operators: `=`, `+=`, `-=`, etc.
+- **S**equence: Evaluation from left to right
+
+**Exceptional Cases:**
+
+- **Unary minus (`-`):** Higher precedence than binary minus if used for negation (e.g., `-x`).
+- **String concatenation (`.`):** Same precedence as addition/subtraction, but left-associative (however, its precedence was lowered in PHP 8.0+).
+- **Null coalescing (`??`):** Right-associative.
+- **Nullish coalescing (`??=`):** Left-associative.
+
+**PHP 7.4 and 8.0+ Changes:**
+
+- String concatenation (`+`) has lower precedence than arithmetic addition/subtraction in PHP 8.0+.
+- Ternary operator is no longer left-associative in PHP 8.0+.
