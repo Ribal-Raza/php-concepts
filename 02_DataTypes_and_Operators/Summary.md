@@ -37,6 +37,9 @@
     - [Multi-dimensional Arrays](#multidimensional-arrays-nested-data-structures)
     - [Removing Elements from Arrays](#removing-elements-from-arrays)
     - [Automatic Key and Indexing](#automatic-key-and-indexing-in-php-arrays)
+  - [Operators](#operators)
+    - [Operator Types](#operator-types)
+    - [Other Types of Operators](#other-types-of-operators)
 
 ## Expressions
 
@@ -390,3 +393,88 @@ Here:
 - **`array_key_exists($key, $array)`:** True if the key exists, even if its value is `null`.
 - **`isset($array[$key])`:** True if the key exists and has a value (not `null`).
 - **Choice:** Use `array_key_exists()` for stricter key existence checks, `isset()` for checking both existence and value presence.
+
+## Operators
+
+Operators are essential tools for arithmatic operations and comparisons. PHP provides vast range of operators.
+
+### Operator Types
+
+- **Unary operators:** These operate on a single operand (e.g., `$x++`).
+- **Binary operators:** These involve two operands (e.g., `$x + $y`).
+- **Ternary operators:** These have three operands, providing conditional evaluation (e.g., `$result = $x > 0 ? "positive" : "negative";`).
+
+### Other Types of Operators
+
+#### Arithmetic Operators
+
+- **Addition (`+`):** Adds operands (e.g., `$sum = 2 + 3`).
+- **Subtraction (`-`):** Subtracts operands (e.g., `$difference = 10 - 5`).
+- **Multiplication (`*`):** Multiplies operands (e.g., `$product = 4 * 5`).
+- **Division (`/`):** Divides operands (e.g., `$quotient = 12 / 3`).
+- **Modulo (`%`):** Returns the remainder of division (e.g., `$remainder = 11 % 3`).
+- **Exponentiation (`**`):**  Raises the left operand to the power of the right operand (e.g.,  `$power = 2 \*\* 3`).
+
+#### Assignment Operators
+
+- **Simple assignment (`=`):** Assigns a value to a variable (e.g., `$age = 30`).
+- **Combined assignment operators (e.g., `+=`, `-=`):** Perform the operation and assign the result (e.g., `$x += 5`).
+
+#### String Operators
+
+- **Concatenation (`.`):** Combines strings (e.g., `$fullName = "John " . "Doe"`).
+- **String concatenation assignment (`.=`):** Appends a string to another (e.g., `$greeting .= " Welcome!"`).
+
+#### Comparison Operators
+
+- **Equality (`==`):** Checks for loose equality (value comparison, type coercion possible) (e.g., `$x == 1`).
+- **Identical (`===`):** Checks for strict equality (value and type comparison) (e.g., `"1" === 1` is `false`).
+- **Inequality (`!=`, `!==`):** Checks for opposite of equality and strict inequality, respectively.
+- **Comparison operators (`<`, `>`, `<=`, `>=`):** Compare numerical values.
+- **Null coalescing (`??`):** Returns the right operand if the left operand is `null` (e.g., `$value ?? "default"`).
+- **Nullish coalescing (`?:`):** Returns the right operand if the left operand is `null` or falsy (e.g., `$value ?: "default"`).
+
+#### Error Control Operator (@)
+
+- **Suppresses non-fatal errors (**not recommended\*\* for production, use for debugging) (e.g., `$result = @fopen("nonexistent.txt");`).
+
+#### Increment/Decrement Operators (++, --)
+
+- **Increment (`++`):** Increments a variable by 1 (e.g., `$x++`, `++$x`).
+- **Decrement (`--`):** Decrements a variable by 1 (e.g., `$y--`, `--$y`).
+
+#### Logical Operators
+
+- **And (`&&`):** Returns true only if both operands are true (e.g., `$x > 0 && $y < 10`).
+- **Or (`||`):** Returns true if at least one operand is true (e.g., `$age >= 18 || $has_permission`).
+- **Not (`!`):** Negates the operand (e.g., `!$isValid`).
+
+#### Bitwise Operators
+
+- **Bitwise AND (`&`):** Performs bitwise AND operation (e.g., `$x & $y`).
+- **Bitwise OR (`|`):** Performs bitwise OR operation (e.g., `$x | $y`).
+- **Bitwise XOR (`^`):** Performs bitwise exclusive OR operation (e.g., `$x ^ $y`).
+- **Bitwise NOT (`~`):** Performs bitwise NOT operation (e.g., `~ $x`).
+- **Left shift (`<<`):** Shifts bits left (e.g., `$x << 2`).
+- **Right shift (`>>`):** Shifts bits right (e.g., `$x >> 1`)
+
+#### Array Operators
+
+- **Addition (`+`):** Merges arrays without duplicate keys (e.g., `$merged = $arr1 + $arr2`).
+- **Comparison operators (`==`, `===`, `!==`, `!===`, `<`):** Compare arrays by reference (loose comparison) or by value (strict comparison with `serialize()`).
+- **Null coalescing (`??`):** Used with arrays similar to the nullish coalescing operator.
+
+#### Execution Operators (``)
+
+- **Execute an arbitrary string as PHP code (**extremely dangerous**, avoid at all costs).**
+
+#### Type Operators
+
+- **`instanceof`:** Checks if an object is an instance of a specific class or interface (e.g., `$object instanceof MyClass`).
+
+#### Null Safe Operators (PHP 8)
+
+- **Nullish coalescing (`??`):** Returns the right operand if the left operand is `null` or falsy (e.g., `$value ?? "default"`).
+- **Null coalescing assignment (`??=`)** Assigns the right operand to the left operand only if the left operand is `null` (e.g., `$value ??= "default"`).
+- **Null safe method call (`?->`):** Allows calling methods on potentially null objects without errors (e.g., `$object?->method()`).
+- **Null safe property access (`?->`):** Accesses properties on potentially null objects without errors (e.g., `$object?->property`).
