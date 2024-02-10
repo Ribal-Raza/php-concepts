@@ -1,39 +1,82 @@
-# Data types
-
 ### Table of Contents
 
-- [Booleans](#1-booleans)
-  - [Case Insensitive](#case-insensitive-nature)
-  - [Booleans in Control Flows and Looping Statements](#booleans-in-control-flows-and-looping-statements)
-  - [Truthy and Falsy Values](#truthy-and-falsy-values)
-  - [Built-In Functions related to Booleans](#php-built-in-functions-related-to-booleans)
-- [Integers](#2-integers)
-  - [Integer Size](#integers-size)
-  - [Integers Type Casting](#integers-type-casting)
-  - [Checking Integer Type](#checking-integer-type)
-- [Floats](#3-floats)
-  - [Floats Size, Accuracy, and Special Values](#floats-size-accuracy-and-special-values)
-  - [Floats Rounding (floor and ceil)](#floats-rounding-floor-and-ceil)
-  - [Floats Equality Traps](#floats-equality-traps)
-  - [Floats Type Casting](#floats-type-casting)
-  - [Verification Methods for Floats](#verification-methods-for-floats)
-- [Strings](#4-strings)
-  - [Single vs. Double Quotes](#single-vs-double-quotes)
-  - [String Concatenation](#string-concatenation)
-  - [Indexes: Accessing String Characters](#indexes-accessing-string-characters)
-  - [Heredocs and Nowdocs](#heredocs-and-nowdocs)
-- [null / NULL](#5-null--null)
-  - [Null Common and Uncommon Edge cases](#null-common-and-uncommon-cases)
-  - [Detecting Null](#detecting-null)
-- [Arrays](#arrays)
-  - [Array Initialization](#array-initialization-methods)
-  - [Indexed Arrays](#indexed-arrays)
-  - [Undefined Keys and Existance Checks](#undefined-keys-and-existence-checks)
-  - [Array Mutation](#array-mutation-dynamic-updates)
-  - [Associative Arrays](#associative-arrays)
-  - [Multi-dimensional Arrays](#multidimensional-arrays-nested-data-structures)
-  - [Removing Elements from Arrays](#removing-elements-from-arrays)
-  - [Automatic Key and Indexing](#automatic-key-and-indexing-in-php-arrays)
+- [Expressions](#expressions)
+  - [Understanding Expressions](#understanding-expressions)
+  - [Types of Expressions](#types-of-expressions)
+  - [Why Everything is an Expression?](#why-everything-is-an-expression)
+- [**Data Types**](#data-types)
+  - [Booleans](#1-booleans)
+    - [Case Insensitive](#case-insensitive-nature)
+    - [Booleans in Control Flows and Looping Statements](#booleans-in-control-flows-and-looping-statements)
+    - [Truthy and Falsy Values](#truthy-and-falsy-values)
+    - [Built-In Functions related to Booleans](#php-built-in-functions-related-to-booleans)
+  - [Integers](#2-integers)
+    - [Integer Size](#integers-size)
+    - [Integers Type Casting](#integers-type-casting)
+    - [Checking Integer Type](#checking-integer-type)
+  - [Floats](#3-floats)
+    - [Floats Size, Accuracy, and Special Values](#floats-size-accuracy-and-special-values)
+    - [Floats Rounding (floor and ceil)](#floats-rounding-floor-and-ceil)
+    - [Floats Equality Traps](#floats-equality-traps)
+    - [Floats Type Casting](#floats-type-casting)
+    - [Verification Methods for Floats](#verification-methods-for-floats)
+  - [Strings](#4-strings)
+    - [Single vs. Double Quotes](#single-vs-double-quotes)
+    - [String Concatenation](#string-concatenation)
+    - [Indexes: Accessing String Characters](#indexes-accessing-string-characters)
+    - [Heredocs and Nowdocs](#heredocs-and-nowdocs)
+  - [null / NULL](#5-null--null)
+    - [Null Common and Uncommon Edge cases](#null-common-and-uncommon-cases)
+    - [Detecting Null](#detecting-null)
+  - [Arrays](#arrays)
+    - [Array Initialization](#array-initialization-methods)
+    - [Indexed Arrays](#indexed-arrays)
+    - [Undefined Keys and Existance Checks](#undefined-keys-and-existence-checks)
+    - [Array Mutation](#array-mutation-dynamic-updates)
+    - [Associative Arrays](#associative-arrays)
+    - [Multi-dimensional Arrays](#multidimensional-arrays-nested-data-structures)
+    - [Removing Elements from Arrays](#removing-elements-from-arrays)
+    - [Automatic Key and Indexing](#automatic-key-and-indexing-in-php-arrays)
+
+## Expressions
+
+Expressions are fundamental units of code that evaluate to a single value. They combine variables, literals, operators, and function calls to perform calculations, manipulate data, and produce results.
+
+- **Prevalence:** PHP embraces expression-oriented programming, where nearly everything you write (except statements and control structures) can be considered an expression. This enables a flexible and concise coding style.
+
+### Understanding Expressions
+
+- **Evaluating to a Value:** Every expression returns a value after computation, which can be used further in assignments, function calls, or other expressions.
+- **Elements:**
+
+  - **Variables:** Represent named containers that hold values during program execution.
+  - **Literals:** Constant values directly embedded in the code (e.g., numbers, strings, booleans).
+  - **Operators:** Symbols that perform operations on values (e.g., arithmetic, comparison, logical).
+  - **Function Calls:** Invoke functions to execute specific tasks and often return values.
+
+- **Examples:**
+
+  - `$sum = 2 + 3;` (Expression evaluating to 5)
+  - `$name = "John";` (Assigning string literal to a variable)
+  - `if ($age >= 18) { ...; }` (Conditional expression within an `if` statement)
+  - `$result = abs(-5);` (Function call `abs()` returning the absolute value of -5)
+
+### Types of Expressions
+
+- **Arithmetic:** Perform mathematical calculations (`+`, `-`, `*`, `/`, `%`, etc.).
+- **Comparison:** Evaluate relationships between values (`==`, `!=`, `<`, `>`, etc.).
+- **Logical:** Combine truth values (`&&`, `||`, `!`).
+- **Assignment:** Assign values to variables (`=`, `+=`, `-=`, `*=`, etc.).
+- **Other:** Casting, increment/decrement, string operations, function calls, and more.
+
+### Why Everything is an Expression?
+
+- **Readability:** Simple expressions contribute to cleaner code.
+- **Flexibility:** Expressions can be embedded in various contexts, enabling versatile syntax.
+- **Chaining:** Multiple expressions can be chained together through their return values.
+- **Functional Programming:** PHP supports functional programming paradigms where expressions hold values and can be passed to functions.
+
+## Data types
 
 ## 1. Booleans
 
