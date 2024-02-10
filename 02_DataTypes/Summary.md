@@ -25,6 +25,15 @@
 - [null / NULL](#5-null--null)
   - [Null Common and Uncommon Edge cases](#null-common-and-uncommon-cases)
   - [Detecting Null](#detecting-null)
+- [Arrays](#arrays)
+  - [Array Initialization](#array-initialization-methods)
+  - [Indexed Arrays](#indexed-arrays)
+  - [Undefined Keys and Existance Checks](#undefined-keys-and-existence-checks)
+  - [Array Mutation](#array-mutation-dynamic-updates)
+  - [Associative Arrays](#associative-arrays)
+  - [Multi-dimensional Arrays](#multidimensional-arrays-nested-data-structures)
+  - [Removing Elements from Arrays](#removing-elements-from-arrays)
+  - [Automatic Key and Indexing](#automatic-key-and-indexing-in-php-arrays)
 
 ## 1. Booleans
 
@@ -220,3 +229,121 @@ In programming, null signifies the **absence of a value**. It represents no data
 - **Strict Comparisons:** Use `$value === null` or `$value !== null` for exact null checks.
 - **Loose Comparisons:** Avoid `$value == null` or `$value != null` due to potential type juggling.
 - **Null Coalescing Operator (PHP 7.0+):** `$value ?? $default` returns $default if $value is null, otherwise $value.
+
+## 6. Arrays
+
+Arrays are ordered collections of values, storing multiple data items under a single variable name. Arrays are useful in storing lists, managing multiple related values, representing datasets, implementing data structures like stacks and queues, and various other purposes.
+
+### Array Initialization Methods
+
+- **`array()`:** Explicitly declare elements (e.g., `$colors = array("red", "green", "blue");`).
+- **Square brackets:** Shorthand syntax (e.g., `$fruits = ["apple", "banana", "orange"];`).
+- **`range()` function:** Generate numbered sequences (e.g., `$numbers = range(1, 5);`).
+- **Type casts:** Convert other data types (e.g., `$string_array = (array) "hello";`).
+
+### Indexed Arrays
+
+PHP arrays follow 0 based index, means the first item of array has index 0. In indexed arrays, elements are identified by numerical indices/values starting from 0.
+
+- By index directly (e.g., `$firstColor = $colors[0];`).
+- Looping through all elements (e.g., `foreach ($fruits as $fruit) { echo "$fruit "; }`).
+- String interpolation for key access (e.g., `echo "The second fruit is {$fruits[1]}";`).
+
+### Undefined Keys and Existence Checks
+
+- **Automatic Indexing:** When you assign a value without a specific index, PHP assigns the next available integer index.
+- **Checking Key/Item Existence:**
+  - `array_key_exists($key, $array)`: True if the key exists, even if its value is `null`.
+  - `isset($array[$key])`: True if the key exists and has a value (not `null`).
+  - Negative indices are not supported for direct access; use modulo (`%`) to calculate equivalent positive indices.
+
+### Array Mutation: Dynamic Updates
+
+- **Adding New Elements:**
+  - Using square brackets and an index (e.g., `$colors[] = "purple";`).
+  - `array_push()` function to append to the end (e.g., `array_push($fruits, "mango");`).
+  - `array_unshift()` function to insert at the beginning (e.g., `array_unshift($fruits, "kiwi");`).
+- **Re-assigning:** Assign a new array value to an existing index (e.g., `$fruits[2] = "pineapple";`).
+
+### Associative Arrays
+
+Associative Arrays have their keys defined explicitly.
+
+- **Defining Keys:** Use strings or integers (e.g., `$person = array("name" => "John", "age" => 30);`).
+  - **Key data type:** Strings are recommended for better readability and flexibility.
+- **Accessing Elements:** Use the key directly within square brackets (e.g., `$age = $person["age"];`).
+  - Duplicate keys: The last assigned value for a key is used (`$person["1"] = "one"; $person[1] = "two"; // Only "two" exists`).
+- **Modifying:** Same principles as indexed arrays, but use keys instead of indices.
+
+### Multidimensional Arrays: Nested Data Structures
+
+- **Indexed Multidimensional:** Arrays within arrays, accessed using nested indices (e.g., `$data[0][1]`).Example:
+  ```php
+  $data = [
+  			[1, 2, 3],
+  			[4, 5, 6],
+  			["apple", "banana", "orange"],
+  		];
+  ```
+- **Associative Multidimensional:** Arrays with associative keys within, accessed using nested keys (e.g., `$data["person"]["name"]`). Example:
+
+  ```php
+  	$users = [
+  	    "john" => [
+  	        "name" => "John Doe",
+  	        "age" => 30,
+  	        "city" => "New York",
+  		    ],
+  	    "jane" => [
+  	        "name" => "Jane Smith",
+  	        "age" => 25,
+  	        "city" => "Los Angeles",
+  		    ],
+  		];
+
+  ```
+
+- **Modification:** Similar to regular arrays, but apply nested indexing/keys appropriately.
+
+### Removing Elements from Arrays
+
+- **`array_pop()`:** Removes and returns the last element (e.g., `$lastFruit = array_pop($fruits);`).
+- **`array_shift()`:** Removes and returns the first element (e.g., `$firstColor = array_shift($colors);`).
+- **`unset($array[$key])`:** Removes the element with the specified key (e.g., `unset($person["age"]);`).
+- **`array_splice()`:** Versatile function for removing, replacing, or inserting elements at specific positions.
+
+### Automatic Key and Indexing in PHP Arrays
+
+In PHP, arrays can have both numeric and associative keys (strings or integers). When you add elements to an array, there are two ways keys are assigned:
+
+#### Numeric Keys
+
+- If you don't explicitly specify a key when adding an element, PHP assigns the next available **integer index** starting from 0.
+- This leads to **sequential indexing**, where elements are listed in the order they were added.
+
+#### Associative Keys
+
+- You can also use **explicit keys** (strings or integers) to assign elements.
+- In this case, the chosen key determines the specific position of the element in the array.
+
+#### Case 1: ["a", "b", 50 => "c", "d", "e"]
+
+In this case:
+
+- `"a"` and `"b"` are assigned numeric keys 0 and 1, respectively, due to automatic indexing.
+- `"50 => "c"` explicitly assigns the element `"c"` to the key `50`. This breaks the automatic integer indexing sequence.
+- `"d"` and `"e"` are then assigned numeric keys 51 and 52, continuing the sequence starting from the next available index after 50.
+
+#### Case 2: ["a", "b", "third" => "c", "d", "e"]
+
+Here:
+
+- `"a"` and `"b"` are automatically assigned keys 0 and 1.
+- `"third" => "c"` creates an association with the string `"third"` as the key, interrupting the numeric sequence.
+- `"d"` and `"e"` receive keys 3 and 4 based on the next available indexes after `2` (index assigned to `"third"`).
+
+### Alternative Key Existence Checks
+
+- **`array_key_exists($key, $array)`:** True if the key exists, even if its value is `null`.
+- **`isset($array[$key])`:** True if the key exists and has a value (not `null`).
+- **Choice:** Use `array_key_exists()` for stricter key existence checks, `isset()` for checking both existence and value presence.
