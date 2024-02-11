@@ -370,3 +370,61 @@ for ($i = 0; $i < 5; $i++) {
 - Allows for more elaborate condition checks.
 - Uses strict comparison by default.
 - Can be slower for many comparisons.
+
+## Match Expression
+
+The `match` expression is a concise and readable way to perform multi-way comparisons in PHP 8.0 and later. It provides a powerful alternative to the traditional `switch` statement.
+Similar to the `switch` statement, you can include a `default` case to handle unmatched values. You can assign the result of the `match` expression to a variable:
+
+```php
+$day = 5;
+
+$dayName = match ($day) {
+  0 => "Sunday",
+  1 => "Monday",
+  // ... other weekdays
+  default => "Weekend",
+};
+
+echo "Today is {$dayName} \n";
+```
+
+**Fall-through Strategy:**
+
+Unlike `switch`, `match` expressions do not fall through by default. You can explicitly use `break` or `return` to exit a case. Omitting `break` or `return` within a case will not execute the subsequent cases.
+
+```php
+$trafficLight = "yellow";
+
+$message = match ($trafficLight) {
+  "red" => "Stop!",
+  "yellow" => "Caution!", // No break here, no fall-through
+  "green" => "Go!",
+};
+
+echo "$message\n"; // Output: Caution!
+```
+
+**Using Function Calls:**
+
+You can directly call functions within the `match` expression for complex conditions:
+
+```php
+$age = 18;
+
+$status = match ($age) {
+  fn() => $age >= 18 ? "Adult" : "Minor", // Call anonymous function
+  default => "Invalid age",
+};
+
+echo "Your status: $status\n";
+```
+
+### Differences Between Match Expression and Switch Case
+
+- **Syntax and Readability**: `match` is an expression, meaning it returns a value and can be used directly in expressions. `switch` is a statement.
+- **Fall-through Behavior**: `switch` requires explicit `break` statements to prevent fall-through. `match` does not support fall-through; each case is a single expression.
+- **Default Case**: `switch` uses `default`, while `match` allows both `default` and `_` for the default case.
+- **Strict Type Comparison**: `match` uses strict type comparison (`===`), while `switch` uses loose comparison (`==`).
+- **Return Value**: Every arm of a `match` expression must return a value, while `switch` does not have this requirement.
+- **Multiple Conditions**: `match` cannot directly handle multiple conditions for a single case without duplicating the return value.
