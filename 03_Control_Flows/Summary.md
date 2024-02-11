@@ -21,6 +21,13 @@
       - [Overwriting array elements using assignment by reference](#overwriting-array-elements-using-assignment-by-reference)
       - [Iterate over associative arrays](#iterate-over-associative-arrays)
     - [Alternative Foreach & For Loop Syntax](#alternative-foreach--for-loop-syntax)
+  - [Switch Statement](#switch-statement)
+    - [Default Case](#default-case)
+    - [Breack Statement Within Switch](#break-statement-within-switch)
+      - [Fall through Strategy](#fall-through-strategy--use-case)
+    - [Loose Comparison](#loose-comparison)
+    - [Switch Statement Within Loop](#switch-statement-with-in-loop-with-continue-and-break)
+    - [Switch vs if](#difference-between-switch-statement--series-of-if-statements-switch-vs-if)
 
 # Control Structures OR Control Flows
 
@@ -286,3 +293,80 @@ foreach ($person as $key => $value) {
   ```php
   for ($i = 0; $i < 5; $i++) echo $i . " "; // Output: 0 1 2 3 4
   ```
+
+## Switch Statement
+
+The `switch` statement is a control structure that executes a block of code based on the value of a variable and multiple possible conditions. It offers a more concise and efficient way to compare multiple values compared to a series of `if` statements.
+
+### Default Case
+
+- The `default` case acts as a catch-all, executing its code block if none of the other cases match the variable's value.
+- It's optional, but generally a good practice to include to handle unexpected values.
+
+### Break Statement Within Switch
+
+- The `break` statement prevents the fall-through behavior explained in point `c`. Once a matching case is found and its code block executes, the `break` statement forcefully exits the `switch` statement.
+- Without `break`, execution continues to the next case, even if its condition isn't met.
+- The `switch` statement works by comparing the evaluated expression's value with the values specified in each `case` statement. If a match is found, the corresponding code block executes.
+
+#### Fall-through Strategy & Use-case
+
+- Fall-through occurs when there's no `break` statement, causing execution to continue to the next case, even if its condition isn't met.
+- This can be intentional in specific scenarios:
+
+  - When multiple cases share the same code:
+
+  ```php
+  switch ($grade) {
+  	case  90:
+  	case  95:
+  	case  100:
+  		echo  "Excellent!";
+  		break;
+  	case  80:
+  	case  85:
+  		echo  "Very good.";
+  		break;
+  	// ... more cases
+  	}
+  ```
+
+#### Loose Comparison
+
+- The `switch` statement compares values loosely by default, meaning string and numeric values with the same content are considered equal (e.g., `"10"` is equal to `10`).
+- Use strict comparison (`===`) if you need exact type and value matches.
+
+### Switch Statement With-in Loop (with `continue` and `break`)
+
+- Using `continue` within a `switch` inside a loop skips the remaining code in the current iteration and jumps to the next iteration of the loop.
+- This can be useful when you want to selectively ignore certain case matches within a loop:
+
+```php
+for ($i = 0; $i < 5; $i++) {
+    switch ($i) {
+        case 2:
+            continue 2; // Skip processing for $i = 2 and move to the next iteration
+        case 3:
+            // Process $i = 3
+            break;
+        default:
+            // Process other values
+    }
+}
+```
+
+### Difference Between Switch Statement & Series of `if` Statements (Switch vs. If):
+
+**Switch:**
+
+- More concise and readable when dealing with multiple comparisons.
+- Executes only one code block per matching case.
+- Uses loose comparison by default.
+- Generally faster for many comparisons.
+
+**If:**
+
+- More flexible for complex conditions.
+- Allows for more elaborate condition checks.
+- Uses strict comparison by default.
+- Can be slower for many comparisons.
