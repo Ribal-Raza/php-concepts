@@ -28,6 +28,9 @@
     - [Loose Comparison](#loose-comparison)
     - [Switch Statement Within Loop](#switch-statement-with-in-loop-with-continue-and-break)
     - [Switch vs if](#difference-between-switch-statement--series-of-if-statements-switch-vs-if)
+  - [Return Statement](#return-statement)
+  - [Declare Statement](#declare-statement)
+  - [Goto Statement](#goto-statement-discouraged)
 
 # Control Structures OR Control Flows
 
@@ -428,3 +431,84 @@ echo "Your status: $status\n";
 - **Strict Type Comparison**: `match` uses strict type comparison (`===`), while `switch` uses loose comparison (`==`).
 - **Return Value**: Every arm of a `match` expression must return a value, while `switch` does not have this requirement.
 - **Multiple Conditions**: `match` cannot directly handle multiple conditions for a single case without duplicating the return value.
+
+### Return Statement
+
+- Marks the end of a function's execution and optionally sends a value back to the caller.
+- Must be used at least once in each non-void function.
+- Can be used multiple times to return different values depending on conditions.
+
+```php
+function sum($a, $b) {
+  return $a + $b;
+}
+
+$result = sum(5, 2);
+echo $result; // Output: 7
+```
+
+**Note:** If the `return` statement is defined in the global scope, then it will stop the execution of program.
+
+### Declare Statement
+
+- Used to modify program behavior for specific code blocks.
+- Has three common directives:
+
+#### **a. Ticks Directive (Deprecated):**
+
+- Enables "tick events" that execute a registered function periodically while parsing.
+- **Deprecated since PHP 5.3**. Avoid using it due to security and performance concerns.
+
+```php
+// NOT RECOMMENDED
+declare(ticks=5);
+
+function tick_handler() {
+  echo "Tick event!\n";
+}
+
+register_tick_function('tick_handler');
+// Code that triggers ticks...
+```
+
+#### **b. Encoding Directive:**
+
+- Specifies the character encoding of a script (e.g., UTF-8, ISO-8859-1).
+- Useful when including files with different encodings to prevent issues.
+
+```php
+declare(encoding="UTF-8");
+
+// Include a file encoded in UTF-8
+include "utf8_file.php";
+```
+
+#### **c. Strict Types Directive:**
+
+- Enforces strict type checking within a code block.
+- Improves code clarity and avoids potential type-related errors.
+- Recommended for modern development.
+
+```php
+declare(strict_types=1);
+
+function add(int $a, int $b) {
+  return $a + $b;
+}
+// add("5", 2); // Will now cause a fatal error
+```
+
+### **Goto Statement (Discouraged)**
+
+- Unconditionally jumps to another labeled point in the code.
+- Generally discouraged due to readability and maintainability concerns.
+- Can lead to spaghetti code and make it difficult to follow execution flow.
+
+```php
+// Discouraged
+goto label1;
+// ... code
+
+label1:
+echo "Jumping here...";
+```

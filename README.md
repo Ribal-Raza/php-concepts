@@ -5,6 +5,8 @@ The purpose of this repository is to learn and explore different concepts of PHP
 ### Table of Contents
 
 - [Basic Concepts and Syntax](./01_Basics/Summary.md)
+- [Data types and Operators](./02_DataTypes_and_Operators/Summary.md)
+- [Control Flows](./03_Control_Flows/)
 
 PHP, originally meaning "Personal Home Page Tools," now stands for "PHP: Hypertext Preprocessor." It's a **widely-used, open-source, general-purpose scripting language** specifically designed for web development. PHP scripts are executed on the server, generating dynamic content before sending it to the user's browser.
 

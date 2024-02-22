@@ -27,7 +27,6 @@
   - [Strict Types](#strict-types)
   - [Type Casting](#type-casting)
 
-  
 ### **Naming Conventions and Rules for PHP Files:**
 
 - **Extension:** PHP files must have the `.php` extension to be recognized and parsed by the server.
@@ -171,117 +170,122 @@ DocBlocks are special comments used to document functions, classes, variables, a
 - Write clear and concise descriptions.
 
 ## Constants and Variable Variables
--   Constants are named data containers whose values **cannot be changed** during program execution.
--   They provide **fixed values**, often representing universal or unchanging quantities, like mathematical constants (e.g., π), application paths, or configuration settings.
--   Constants enhance code reliability, readability, and maintainability.
+
+- Constants are named data containers whose values **cannot be changed** during program execution.
+- They provide **fixed values**, often representing universal or unchanging quantities, like mathematical constants (e.g., π), application paths, or configuration settings.
+- Constants enhance code reliability, readability, and maintainability.
 
 ### **Defining Constants in PHP:**
 
--   **`define()`  function:**
-    ```php
-    define('PI', 3.14159); // Defines PI as a constant
-    echo PI; // Output: 3.14159
-    ```
-    
--   **`const`  keyword (PHP 5.3+):**
-    ```php
-    const TAX_RATE = 0.07; // Defines TAX_RATE as a constant
-    echo TAX_RATE; // Output: 0.07  
-    ```
-    
+- **`define()` function:**
+  ```php
+  define('PI', 3.14159); // Defines PI as a constant
+  echo PI; // Output: 3.14159
+  ```
+- **`const` keyword (PHP 5.3+):**
+  ```php
+  const TAX_RATE = 0.07; // Defines TAX_RATE as a constant
+  echo TAX_RATE; // Output: 0.07
+  ```
+
 **Differences between `define` and `const`:**
 
--   `define()` can be used inside or outside functions, while `const` is only used within classes or namespaces.
--   `const` provides type checking and can be accessed without the dollar sign ($).
+- `define()` can be used inside or outside functions, while `const` is only used within classes or namespaces.
+- `const` provides type checking and can be accessed without the dollar sign ($).
 
 ### **Built-in Constants:**
 
--   PHP offers various built-in constants like `PHP_VERSION`,  `DIRECTORY_SEPARATOR`, and mathematical constants like `M_PI`.
--   Access them directly without defining:
-    ```php
+- PHP offers various built-in constants like `PHP_VERSION`, `DIRECTORY_SEPARATOR`, and mathematical constants like `M_PI`.
+- Access them directly without defining:
+  `php
     echo PHP_VERSION; // Output: Current PHP version    
-    ```
-**Examples:**
+    `
+  **Examples:**
 
--   **Define application paths:**
-    ```php
-    define('BASE_DIR', __DIR__); // Base directory path
-    $image_path = BASE_DIR . '/images/logo.png';
-    ```
--   **Set configuration values:**
-    ```php
-    const DEBUG_MODE = true;
-    if (DEBUG_MODE) {
-        error_reporting(E_ALL);
-    }
-    ```
+- **Define application paths:**
+  ```php
+  define('BASE_DIR', __DIR__); // Base directory path
+  $image_path = BASE_DIR . '/images/logo.png';
+  ```
+- **Set configuration values:**
+  ```php
+  const DEBUG_MODE = true;
+  if (DEBUG_MODE) {
+      error_reporting(E_ALL);
+  }
+  ```
 
 ### **Variable Variables in PHP:**
 
--   These are variables whose names are stored in other variables.
--   Used for dynamic variable manipulation or accessing variables based on user input.
--   Syntax:  `${$variableName}`
+- These are variables whose names are stored in other variables.
+- Used for dynamic variable manipulation or accessing variables based on user input.
+- Syntax: `${$variableName}`
 
 **Reasons to use Variable Variables**
 
--   Dynamically access properties based on user input (e.g., form data).
--   Implement features like data binding in frameworks.
--   Create arrays with variables as keys.
+- Dynamically access properties based on user input (e.g., form data).
+- Implement features like data binding in frameworks.
+- Create arrays with variables as keys.
 
 **Example:**
+
 ```php
 $username = "john";
 $property = "age";
 echo ${$username}[$property]; // Access variable ${$username}[$property]
 ```
+
 **Caution:**
 
--   Use cautiously to avoid security vulnerabilities like code injection.
--   Ensure proper input validation and sanitation.
+- Use cautiously to avoid security vulnerabilities like code injection.
+- Ensure proper input validation and sanitation.
 
 ## Data Types
 
 PHP is **dynamically typed**: Type determination happens **at runtime**, not during compilation.
--   **Runtime Type Checking:** The interpreter verifies types during execution, potentially leading to errors if mismatches occur.
--   **Compiled Languages (Static Typing):** Types are declared beforehand and checked during compilation, catching errors earlier.
+
+- **Runtime Type Checking:** The interpreter verifies types during execution, potentially leading to errors if mismatches occur.
+- **Compiled Languages (Static Typing):** Types are declared beforehand and checked during compilation, catching errors earlier.
 
 ### **Data Types in PHP**
+
 There are three major data types in PHP and they have their subtypes.
-1. **Scalar Types:** Basic data types holding single values:  
-    -   `integer`: Whole numbers (e.g., 10, -2).
-    -   `float`: Decimal numbers (e.g., 3.14159, 0.001).
-    -   `string`: Sequence of characters (e.g., "Hello", "John Doe").
-    -   `boolean`: True or False values (e.g., true, false).
-    
+
+1. **Scalar Types:** Basic data types holding single values:
+   - `integer`: Whole numbers (e.g., 10, -2).
+   - `float`: Decimal numbers (e.g., 3.14159, 0.001).
+   - `string`: Sequence of characters (e.g., "Hello", "John Doe").
+   - `boolean`: True or False values (e.g., true, false).
 2. **Compound Types:** Complex data structures holding multiple values:
-    -   `array`: Ordered collection of key-value pairs (e.g.,  `["name" => "Alice", "age" => 30]`).
-    -   `object`: Instance of a class, encapsulating data and behavior.
-    
- 3. **Special Types:** Built-in data types with unique behaviors:
-    -   `resource`: Represents external resources like files or database connections.
-    -   `null`: Represents the absence of a value.
+   - `array`: Ordered collection of key-value pairs (e.g., `["name" => "Alice", "age" => 30]`).
+   - `object`: Instance of a class, encapsulating data and behavior.
+3. **Special Types:** Built-in data types with unique behaviors:
+   - `resource`: Represents external resources like files or database connections.
+   - `null`: Represents the absence of a value.
 
 ### **Type Hinting: Adding Explicitness**
--   You can **hint** at the expected type of variables or function arguments using comments (PHP 5.3+) or declarations (PHP 7+).
--   This enhances code clarity and helps IDEs provide better code completion and type checking.
--   Syntax:  `function add(int $x, int $y): int { ... }` (hinting for function arguments and return type).
+
+- You can **hint** at the expected type of variables or function arguments using comments (PHP 5.3+) or declarations (PHP 7+).
+- This enhances code clarity and helps IDEs provide better code completion and type checking.
+- Syntax: `function add(int $x, int $y): int { ... }` (hinting for function arguments and return type).
 
 ### **Type Coercion**
--   In certain situations, PHP automatically converts values between types (coercion).
--   This can be convenient but also lead to unexpected behavior if not well understood.
--   Common scenarios:
-    -   Numeric strings converted to numbers (e.g., "10" becomes 10).
-    -   Booleans converted to integers (e.g., true becomes 1, false becomes 0).
-    -   Implicit array creation when adding numeric strings (e.g., "1" + "2" creates an array).
+
+- In certain situations, PHP automatically converts values between types (coercion).
+- This can be convenient but also lead to unexpected behavior if not well understood.
+- Common scenarios:
+  - Numeric strings converted to numbers (e.g., "10" becomes 10).
+  - Booleans converted to integers (e.g., true becomes 1, false becomes 0).
+  - Implicit array creation when adding numeric strings (e.g., "1" + "2" creates an array).
 
 ### **Strict Types**
 
--   **Declare  `declare(strict_types=1);`** at the beginning of a file or script to enable strict type checking.
--   This enforces type compatibility more rigorously, helping to catch potential errors early.
--   It's recommended for larger projects or when type safety is crucial.
+- **Declare `declare(strict_types=1);`** at the beginning of a file or script to enable strict type checking.
+- This enforces type compatibility more rigorously, helping to catch potential errors early.
+- It's recommended for larger projects or when type safety is crucial.
 
 ### **Type Casting**
 
--   You can explicitly convert values between types using functions like `intval()`,  `floatval()`,  `strval()`, etc.
--   Be mindful of potential data loss or unexpected behavior during casting.
--   Always document your casting logic for clarity and maintainability.
+- You can explicitly convert values between types using functions like `intval()`, `floatval()`, `strval()`, etc.
+- Be mindful of potential data loss or unexpected behavior during casting.
+- Always document your casting logic for clarity and maintainability.
