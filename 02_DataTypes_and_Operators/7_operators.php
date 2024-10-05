@@ -22,9 +22,18 @@ echo "Comparison (strict): " . ($x === $y) . "\n"; // Output: 0 (false)
 echo "String Concatenation: " . ($x . " + " . $y) . "\n"; // Output: 6 + 2
 
 // **Ternary Operators:** Conditional expressions with three operands.
+// (condition) ? (if true) : (if false)
+
 $age = 18;
 $adult = ($age >= 18) ? "adult" : "minor";
 echo "Ternary Operator: " . $adult . "\n";    // Output: adult
+// This expression is equivalent to:
+// if ($age >= 18) {
+//     echo "adult";
+// } else {
+//     echo "minor";
+// }
+
 
 // **2. Arithmetic Operators:** Perform mathematical calculations.
 echo "Multiplication: " . ($x * $y) . "\n";     // Output: 18
